@@ -1,0 +1,95 @@
+//Musuroi Daniel-Nicusor
+//PC-Tema 4
+//Grupa:313CB
+
+
+			Tema 4 - Pregatire Examen
+
+	
+	Cele noua taskuri au fost rezolvate bazandu-ma in principal pe 
+scheletul dat si pe cateva functii ajutatoare create de mine.
+	Alocarile dinamice de memorie au fost facute folosind functia 
+calloc, iar ca eroare in cazul in care nu s-a putut aloca corect memorie 
+se va ajunge la exit code-ul 303.
+
+		Task 1: RotateMatrix
+	Functia RotateMatrix aloca dinamic o matrice patratica ale  carei 
+elemente sunt initializate direct cu elementele matricei rotite, 
+astfel:
+
+   matricea_initiala[k][l] = (k + 1) * 10 ^ nrcifre(l + 1) + l + 1 ,(1)
+   matricea_rotita[i][j] = matricea_initiala[n - j - 1][i] ,(2)
+
+	Din (1) pentru k = n - j - 1 si l = i, obtin:
+
+   matricea_initiala[n - j - 1][i] = (n - j) * 10 ^ nrcifre(i + 1) +
++ i + 1 ,(3)
+
+	Din (2) si (3) obtin: 
+
+   matrice_rotita[i][j] = (n - j) * 10 ^ nrcifre(i + 1) + i + 1
+
+	Am creat o functie numar_cifre (care calculeaza numarul de cifre
+ale unui numar) si am folosit functia pow pentru calcularea elementelor 
+matricei. 
+	Folosind functia sprintf am copiat in sirul de caractere result
+afisarea matricei rotite.
+
+		Task 2: DecodeString
+	Functia DecodeString cu ajutorul functiei strtok extrage fiecare
+numar sub forma de string, pe care il transforma in int cu ajutorul 
+functiei atoi.
+
+		Task 3: InvertArray
+	Functia InvertArray copiaza direct in sirul de caractere pe care
+il returneaza vectorul in ordinea ceruta.
+
+		Task 4: allocPlayer allocGame
+	Functia allocPlayer aloca dinamic mai intai memorie pentru
+pointerul Player pe care il returneaza, apoi pentru sirurile de caractere
+player->name, player->color, player->hat. In final, initializeaza 
+player->alive cu 1.
+	Functia allocGame aloca dinamic mai intai memorie pentru pointerul
+game pe care il returneaza, apoi pentru sirul de caractere game->name.
+
+		Task 5: ReadPlayer ReadGame
+	Functia ReadPlayer apeleaza functia allocPlayer, apoi citeste pe 
+rand numele, culoarea, palaria si numarul de locatii ale unui
+player. Aloca dinamic vectorul de locatii si apoi citeste coordonatele 
+locatiilor folosind un sir de caractere si functia strtok. Pentru citirea
+rolului unui player folosesc o functie creata de mine numita 
+fromStringtoEnum.
+	Functia ReadGame apeleaza functia allocGame, apoi citeste numele,
+killRange-ul si numarul de crewmates ai unui game. Aloca memorie dinamic
+pentru vectorul game->crewmates, urmand ca sa citeasca detaliile despre 
+fiecare player si despre impostor cu ajutorul functiei ReadPlayer.
+
+		Task 6: WritePlayer WriteGame
+	Functia WritePlayer scrie mesajul cerut despre un player in 
+fisierul de output.
+	Functia WriteGame scrie mesajul cerut despre game in fisierul de
+output, apoi foloseste functia WritePlayer pentru fiecare crewmate si apoi
+pentru impostor.
+
+		Task 7: KillPlayer
+	Functia KillPlayer ia fiecare membru al echipajului in ordine 
+inversa (de la cel cu indicele mai mare la indicele mai mic), verifica daca
+este in viata, apoi verifica daca impostorul il poate omori folosind
+distanta Manhattan care este calculata cu ajutorul functiei 
+Manhattan_distance, urmand sa retina playerul cel mai apropiat pe care il 
+poate omori. In functie de rezultat, este omorat sau nu un player si este 
+returnat mesajul corespunzator.
+
+		Task 8: CalcuateNextCycleOfGame
+	Functia CalcuateNextCycleOfGame ia fiecare membru al echipajului
+verifica daca este in viata si in functia de asta muta sau nu playerul la 
+locatia urmatoare si afiseaza un mesaj corespunzator urmat de outputul
+playerului in cazul in care este in viata. Apoi muta impostorul la 
+urmatoarea locatie si afiseaza outputul corespunzator acestuia.
+
+		Task 9: FreePlayer FreeGame
+	Functia FreePlayer elibereaza memoria pentru fiecare alocare facuta
+pentru memoria din structura player.
+	Functia FreeGame elibereaza memoria pentru fiecare alocare facuta
+pentru memoria din structura game.
+	
